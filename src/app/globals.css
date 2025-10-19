@@ -1,9 +1,21 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+
+  --noto-sans: var(--noto-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* BRAND COLORS*/
+  --color-moonlight-100: #CCCCFF;
+  --color-moonlight-200: #A3A3CC;
+  --color-moonlight-300: #5C5C99;
+  --color-moonlight-400: #292966;
+  --color-neutralText-1: #525252;
+  --color-neutralText-2: #a3a3a3;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -80,7 +92,7 @@
 
 .dark {
   --background: oklch(0.147 0.004 49.25);
-  --foreground: oklch(0.985 0.001 106.423);
+  --foreground: oklch(95.213% 0.00011 271.152);
   --card: oklch(0.216 0.006 56.043);
   --card-foreground: oklch(0.985 0.001 106.423);
   --popover: oklch(0.216 0.006 56.043);
@@ -118,5 +130,16 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@utility container{
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)){
+    max-width: none;
+  }
+  @media (width >= 1400px){
+    max-width: 1400px;
   }
 }

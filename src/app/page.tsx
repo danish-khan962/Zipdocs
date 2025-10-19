@@ -1,12 +1,10 @@
-import { Button } from '@/components/ui/button'
+import Hero from '@/components/Hero'
 import React from 'react'
 
 const page = () => {
   return (
     <>
-      <Button variant={'outline'} size={'lg'}>
-        ShadCN Button
-      </Button>
+      <Hero />
     </>
   )
 }

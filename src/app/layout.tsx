@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Noto_Sans as NotoSans } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
+import { ThemeProvider } from "@/lib/theme-provider";
 
 const notoSans = NotoSans({
   variable: "--noto-sans",
@@ -20,11 +23,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${notoSans.variable} noto-sans antialiased`}
+        suppressHydrationWarning
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div className="relative flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
