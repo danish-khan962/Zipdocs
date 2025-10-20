@@ -23,7 +23,7 @@ const BlurCircle = ({ left, right, top, bottom }: BlurCircleProps) => {
         'from-moonlight-100/50',
         'via-moonlight-200/50',
         'to-moonlight-100/50',
-        'dark:brightness-[40%]',
+        'dark:brightness-[25%]',
         'rounded-full',
         'absolute',
         top,
