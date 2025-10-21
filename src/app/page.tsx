@@ -1,3 +1,4 @@
+import CTA from '@/components/home/CTA'
 import Demo from '@/components/home/Demo'
 import Hero from '@/components/home/Hero'
 import HowItWorks from '@/components/home/how-it-works'
@@ -11,6 +12,7 @@ const page = () => {
       <Demo />
       <HowItWorks />
       <Pricing />
+      <CTA />
     </>
   )
 }
