@@ -5,6 +5,9 @@ import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import { ThemeProvider } from "@/lib/theme-provider";
 
+// Clerk Authentication
+import { ClerkProvider } from "@clerk/nextjs";
+
 const notoSans = NotoSans({
   variable: "--noto-sans",
   subsets: ["latin"],
@@ -23,21 +26,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${notoSans.variable} noto-sans antialiased`}
-        suppressHydrationWarning
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="relative flex flex-col min-h-screen">
-            <Navbar />
-            <main className="flex-1">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!}>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={`${notoSans.variable} noto-sans antialiased`}
+          suppressHydrationWarning
+        >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <div className="relative flex flex-col min-h-screen">
+              <Navbar />
+              <main className="flex-1">
+                {children}
+              </main>
+              <Footer />
+            </div>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
