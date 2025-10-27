@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import { ThemeProvider } from "@/lib/theme-provider";
+import { Toaster } from "sonner";
 
 // Clerk Authentication
 import { ClerkProvider } from "@clerk/nextjs";
@@ -36,6 +37,7 @@ export default function RootLayout({
             <div className="relative flex flex-col min-h-screen">
               <Navbar />
               <main className="flex-1">
+                <Toaster />
                 {children}
               </main>
               <Footer />
