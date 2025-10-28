@@ -8,6 +8,7 @@ import { FileUpload } from '@/components/ui/file-upload'
 import { z } from 'zod'
 import { useUploadThing } from '@/utils/uploadthing'
 import { toast } from 'sonner'
+import generatePDFsummary from '@/actions/upload-action'
 
 const schema = z.object({
     file: z.instanceof(File, { message: "Valid file is required" })
@@ -38,8 +39,8 @@ const page = () => {
                         setTimeout(() => resolve({ name: "PDF" }), 2000)
                     ),
                 {
-                    loading: "PDF is Uploading...",
-                    success: (data) => `Uploaded!`,
+                    loading: "Processing the PDF...",
+                    success: (data) => `Summary Generated!`,
                     error: "Error",
                 }
             )
@@ -63,8 +64,15 @@ const page = () => {
 
         // Start upload the file to uploadthing
         const response = await startUpload([file]);
-        if (!response || response.length === 0) return;
+        if (!response || response.length === 0) {
+            toast.error("Something went wrong..");
+            return;
+        };
 
+
+        // Parsing PDFs using "LangChain"
+        const summary = await generatePDFsummary(response);
+        console.log({ summary })
     };
 
     return (
